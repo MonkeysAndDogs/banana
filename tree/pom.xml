@@ -58,19 +58,9 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>${dockerfile.maven.plugin}</version>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>1.3.4</version>
                 <configuration>
-                    <repository>spotify/foobar</repository>
-                    <tag>${project.version}</tag>
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
                 </configuration>
             </plugin>
         </plugins>

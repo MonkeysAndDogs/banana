@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TreeApplication {
 
+    private int count;
+
     @RequestMapping("/")
     public String home() {
+        System.out.println("count:" + ++count);
         return "Hello Docker World";
     }
 
