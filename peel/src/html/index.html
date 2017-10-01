@@ -1,0 +1,21 @@
+<%- include('./_block/header.ejs') %>
+<div>2242</div>
+<button class="btn" style="display: block; width: 100px; height: 50px;">click</button>
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<%- include('./_block/footer.ejs') %>
+<script>
+require(['jquery','vue','jqweui'],function ($,Vue) {
+    $(document).on('click','.btn',function () {
+        $.alert("自定义的消息内容");
+    });
+    new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+});
+</script>

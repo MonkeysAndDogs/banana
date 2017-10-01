@@ -1,0 +1,27 @@
+<script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
+<script>
+    require.config({
+        baseUrl:'../js',
+        waitSeconds:0,
+        paths:{
+            'vue':'https://cdn.bootcss.com/vue/2.4.4/vue.min',
+            'jquery':'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
+            'fastClick':'https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min',
+            'jqweui':'lib/jquery-weui'
+        },
+        shim:{
+            'jqweui':{
+                deps:['jquery']
+            }
+        }
+    });
+</script>
+<script>
+    require(['jquery','fastClick'],function ($,FastClick) {
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    });
+</script>
+</body>
+</html>
