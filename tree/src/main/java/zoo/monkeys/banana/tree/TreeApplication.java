@@ -1,4 +1,4 @@
-package zoo.banana.wechat.tree;
+package zoo.monkeys.banana.tree;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
