@@ -8,8 +8,18 @@ The station was tired and came to a *banana*.
 ####  测试公众号
 ![测试公众号](http://omw8jrf5x.bkt.clouddn.com/small.png)
 
+## tree doc
 
+### how to build **tree**
 
+#### First
+```
+mvn -N io.takari:maven:wrapper
+```
+#### Second
+```
+./mvnw clean install
+```
 
 
 
