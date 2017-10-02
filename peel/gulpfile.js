@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 var catalog = '../tree/src/main/resources/static/';
 
 gulp.task('styles', function() {
-    return gulp.src('src/css/*.scss')
+    return gulp.src('src/css/**/*.scss')
         .pipe(sass())
         .pipe(gulp.dest(catalog+'css'))
         .pipe(notify({ message: 'styles task complete' }));
@@ -24,15 +24,15 @@ gulp.task('js',function(){
         .pipe(notify({ message: 'js task complete' }));
 });
 gulp.task('ejs', function () {
-    return  gulp.src(["src/html/*.html"])
+    return  gulp.src(["src/html/**/*.html"])
         .pipe(ejs({}))
         .pipe(gulp.dest(catalog + "html"))
         .pipe(notify({ message: 'html task complete' }));
 });
 gulp.task('watch', function() {
-    gulp.watch('src/css/*.scss', ['styles']);
+    gulp.watch('src/css/**/*.scss', ['styles']);
     gulp.watch('src/js/**/*.js', ['js']);
-    gulp.watch('src/html/*.html', ['ejs']);
+    gulp.watch('src/html/**/*.html', ['ejs']);
     gulp.watch('src/html/**/*.ejs', ['ejs']);
 });
 gulp.task('default', ['ejs','js','styles','watch']);
