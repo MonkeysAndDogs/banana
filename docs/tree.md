@@ -1,4 +1,4 @@
-# tree doc
+# Tree Doc
 
 ## How to build jar
 
