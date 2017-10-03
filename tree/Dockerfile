@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
+MAINTAINER Hofoo wechat:haiworld
 VOLUME /tmp
 ADD target/tree-0.0.1-SNAPSHOT.jar app.jar
 ENV JAVA_OPTS=""
