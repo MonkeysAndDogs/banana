@@ -14,7 +14,7 @@ public class TreeApplication {
     @RequestMapping("/")
     public String home() {
         System.out.println("count:" + ++count);
-        return "Hello Docker World";
+        return "Hello Docker World, access times:" + count;
     }
 
     public static void main(String[] args) {
