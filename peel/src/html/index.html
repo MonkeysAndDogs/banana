@@ -1,43 +1,32 @@
+<!--页面公共头部-->
 <%- include('./_block/header.ejs',{ title:'首页' }) %>
-<div id="app" class="container">
-<div style="height: 800px">qweqe</div>
-    <div>qweqwe</div>
+<!--页面逻辑html-->
+<div id="app">
+    <div class="container"></div>
+    <banner></banner>
 </div>
+<!--页面组件-->
+<%- include('./component/nav.ejs') %>
+<!--页面公共底部-->
 <%- include('./_block/footer.ejs') %>
+<!--页面逻辑js-->
 <script>
-require(['jquery','vue','jqweui'],function ($,Vue) {
-    var ScrollFix = function(elem) {
-        // Variables to track inputs
-        var startY, startTopScroll;
-
-        elem = elem || document.querySelector(elem);
-
-        // If there is no element, then do nothing
-        if(!elem)
-            return;
-
-        // Handle the start of interactions
-        elem.addEventListener('touchstart', function(event){
-            startY = event.touches[0].pageY;
-            startTopScroll = elem.scrollTop;
-
-            if(startTopScroll <= 0)
-                elem.scrollTop = 1;
-
-            if(startTopScroll + elem.offsetHeight >= elem.scrollHeight)
-                elem.scrollTop = elem.scrollHeight - elem.offsetHeight - 1;
-        }, false);
-    };
-    var scrollable = document.getElementById("app");
-    new ScrollFix(scrollable);
-//    $(document).on('click','.btn',function () {
-//        $.alert("自定义的消息内容");
-//    });
-//    new Vue({
-//        el: '#app-6',
-//        data: {
-//            message: 'Hello Vue!'
-//        }
-//    });
+require(['jquery','vue','util','jqweui'],function ($,Vue,util) {
+    //注册组件
+    var banner = Vue.extend({
+        template: '#banner',
+        data:function () {
+            return {
+                title:'heheda'
+            }
+        }
+    });
+    //实例化一个vue
+    new Vue({
+        el: '#app',
+        components:{
+            'banner':banner
+        }
+    });
 });
 </script>

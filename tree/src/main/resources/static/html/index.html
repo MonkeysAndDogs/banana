@@ -1,3 +1,4 @@
+<!--页面公共头部-->
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -14,12 +15,19 @@
     <link rel="stylesheet" href="../../css/layout.css">
 </head>
 <body ontouchstart>
-<div id="app" class="container">
-<div style="height: 800px">qweqe</div>
-    <div>qweqwe</div>
+<!--页面逻辑html-->
+<div id="app">
+    <div class="container"></div>
+    <banner></banner>
 </div>
+<!--页面组件-->
+<template id="banner">
+    <div class="banner">{{ title }} a test</div>
+</template>
+<!--页面公共底部-->
 <script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
 <script>
+    var timeStamp = new Date().getTime();
     require.config({
         baseUrl:'../js',
         waitSeconds:0,
@@ -28,7 +36,8 @@
             'jquery':'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
             'fastClick':'https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min',
             'css':'https://cdn.bootcss.com/require-css/0.1.10/css.min',
-            'jqweui':'lib/jquery-weui'
+            'jqweui':'lib/jquery-weui',
+            'util':'util.js?v='+timeStamp
         },
         shim:{
             'jqweui':{
@@ -46,40 +55,24 @@
 </script>
 </body>
 </html>
+<!--页面逻辑js-->
 <script>
-require(['jquery','vue','jqweui'],function ($,Vue) {
-    var ScrollFix = function(elem) {
-        // Variables to track inputs
-        var startY, startTopScroll;
-
-        elem = elem || document.querySelector(elem);
-
-        // If there is no element, then do nothing
-        if(!elem)
-            return;
-
-        // Handle the start of interactions
-        elem.addEventListener('touchstart', function(event){
-            startY = event.touches[0].pageY;
-            startTopScroll = elem.scrollTop;
-
-            if(startTopScroll <= 0)
-                elem.scrollTop = 1;
-
-            if(startTopScroll + elem.offsetHeight >= elem.scrollHeight)
-                elem.scrollTop = elem.scrollHeight - elem.offsetHeight - 1;
-        }, false);
-    };
-    var scrollable = document.getElementById("app");
-    new ScrollFix(scrollable);
-//    $(document).on('click','.btn',function () {
-//        $.alert("自定义的消息内容");
-//    });
-//    new Vue({
-//        el: '#app-6',
-//        data: {
-//            message: 'Hello Vue!'
-//        }
-//    });
+require(['jquery','vue','util','jqweui'],function ($,Vue,util) {
+    //注册组件
+    var banner = Vue.extend({
+        template: '#banner',
+        data:function () {
+            return {
+                title:'heheda'
+            }
+        }
+    });
+    //实例化一个vue
+    new Vue({
+        el: '#app',
+        components:{
+            'banner':banner
+        }
+    });
 });
 </script>
