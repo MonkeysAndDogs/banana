@@ -1,4 +1,4 @@
-package zoo.monkeys.banana.tree.wechat.message;
+package zoo.monkeys.banana.tree.wechat.message.constants;
 
 /**
  * @author Hofoo

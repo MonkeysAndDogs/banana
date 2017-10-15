@@ -5,7 +5,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import zoo.monkeys.banana.tree.wechat.message.WeChatMessage;
+import zoo.monkeys.banana.tree.wechat.message.Message;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ public class MessageUtil {
         return rtnMap;
     }
 
-    public static String textMessageToXml(WeChatMessage msg) {
+    public static String textMessageToXml(Message msg) {
         if (null == msg) {
             return "";
         }

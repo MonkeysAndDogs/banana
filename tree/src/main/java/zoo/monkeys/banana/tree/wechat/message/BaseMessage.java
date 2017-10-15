@@ -9,7 +9,7 @@ import java.util.Date;
  * @since 2017-10-15 17:22
  */
 @Data
-public abstract class BaseMessage implements WeChatMessage{
+public abstract class BaseMessage implements Message {
 
     /* 开发者微信号 */
     private String ToUserName;
