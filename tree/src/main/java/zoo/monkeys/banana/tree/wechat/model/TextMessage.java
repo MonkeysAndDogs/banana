@@ -2,6 +2,8 @@ package zoo.monkeys.banana.tree.wechat.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author Hofoo
  * @since 2017-10-03 18:35
@@ -17,7 +19,7 @@ public class TextMessage {
 
 
     /* CreateTime */
-    private Long CreateTime = System.currentTimeMillis()/1000;
+    private Long CreateTime = new Date().getTime();
 
     /* text */
     private String MsgType;
