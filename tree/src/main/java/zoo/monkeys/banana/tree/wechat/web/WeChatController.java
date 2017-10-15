@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zoo.monkeys.banana.tree.config.WeChatConfig;
 import zoo.monkeys.banana.tree.utils.MessageUtil;
-import zoo.monkeys.banana.tree.wechat.model.TextMessage;
+import zoo.monkeys.banana.tree.wechat.message.MessageFactory;
+import zoo.monkeys.banana.tree.wechat.message.MsgType;
+import zoo.monkeys.banana.tree.wechat.message.WeChatMessage;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -51,14 +53,20 @@ public class WeChatController {
         String strContent = mapRequest.get("Content");
         String strMsgId = mapRequest.get("MsgId");
 
-        TextMessage rtnMsg = new TextMessage();
-        if ("text".equals(strMsgType)) {
-            rtnMsg.setToUserName(strFromUserName);
-            rtnMsg.setFromUserName(strToUserName);
-            rtnMsg.setMsgType("text");
-            rtnMsg.setContent("echo:" + strContent);
+        WeChatMessage msg = null;
+        if (MsgType.TEXT.equals(strMsgType)) {
+            msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "echo:" + strContent);
+        } else if (MsgType.EVENT.equals(strMsgType)) {
+            String strEvent = mapRequest.get("Event");
+            if (MsgType.EventType.SUBSCRIBE.equals(strEvent)) {
+                msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "欢迎订阅呜呜找座公众号");
+            } else if (MsgType.EventType.UNSUBSCRIBE.equals(strEvent)) {
+                log.info("{} unsubscribe wechat account", strFromUserName);
+            }
+        } else {
+            throw new RuntimeException("Unrecognized message type: " + strMsgType);
         }
-        String xml = MessageUtil.textMessageToXml(rtnMsg);
+        String xml = MessageUtil.textMessageToXml(msg);
         log.info("msg to xml:{}", xml);
         return xml;
     }
