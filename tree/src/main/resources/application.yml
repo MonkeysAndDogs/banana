@@ -3,4 +3,19 @@ server:
 
 wechat:
   token: banana
+  appID: wxa052d84a54308b00
+  appSecret: ecccf02f1a57b41c8a7c99b4cab64a43
+
+spring:
+  jackson:
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  datasource:
+    url: jdbc:mysql://139.129.192.239:53306/banana?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root1234#
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 # helloworld

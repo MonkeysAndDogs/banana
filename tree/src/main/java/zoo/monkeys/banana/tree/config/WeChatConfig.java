@@ -17,4 +17,12 @@ public class WeChatConfig {
 
     @NotNull
     private String token;
+
+    @NotNull
+    private String appID;
+
+    @NotNull
+    private String appSecret;
+
+    private String accessToken;
 }
