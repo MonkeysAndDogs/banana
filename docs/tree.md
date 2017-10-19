@@ -14,3 +14,6 @@ mvn -N io.takari:maven:wrapper
 ```bash
 ./mvnw -package -pl tree -am dockerfile:build -Dmaven.test.skip=true
 ```
+
+## wechat get access token
+https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index

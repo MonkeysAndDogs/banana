@@ -27,7 +27,7 @@
         <module>tree</module>
     </modules>
 
-    <!-- Aliyun repository -->
+     <!--Aliyun repository-->
     <repositories>
         <repository>
             <id>central</id>
