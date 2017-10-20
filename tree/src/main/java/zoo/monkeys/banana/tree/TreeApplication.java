@@ -1,19 +1,25 @@
 package zoo.monkeys.banana.tree;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import zoo.monkeys.banana.tree.wechat.service.WeChatService;
 
+import javax.annotation.Resource;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @SpringBootApplication
 @RestController
 @EnableScheduling
-public class TreeApplication {
+public class TreeApplication implements CommandLineRunner {
 
     private AtomicInteger count;
+
+    @Resource
+    private WeChatService weChatService;
 
     @RequestMapping("/")
     public String home() {
@@ -22,5 +28,10 @@ public class TreeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TreeApplication.class, args);
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        weChatService.refreshAccessToken(false);
     }
 }

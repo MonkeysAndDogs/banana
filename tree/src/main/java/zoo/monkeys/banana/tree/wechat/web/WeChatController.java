@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zoo.monkeys.banana.tree.config.WeChatConfig;
 import zoo.monkeys.banana.tree.utils.MessageUtil;
+import zoo.monkeys.banana.tree.wechat.message.Message;
 import zoo.monkeys.banana.tree.wechat.message.MessageFactory;
 import zoo.monkeys.banana.tree.wechat.message.constants.MsgType;
-import zoo.monkeys.banana.tree.wechat.message.Message;
+import zoo.monkeys.banana.tree.wechat.model.MenuResponse;
+import zoo.monkeys.banana.tree.wechat.service.WeChatService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,14 +26,17 @@ import static zoo.monkeys.banana.tree.utils.WeChatUtil.checkSignature;
  * @since 2017-10-03 14:48
  */
 @RestController
-@RequestMapping("wx/dock")
+@RequestMapping("/wechat")
 @Slf4j
 public class WeChatController {
 
     @Resource
     private WeChatConfig weChatConfig;
 
-    @GetMapping
+    @Resource
+    private WeChatService weChatService;
+
+    @GetMapping("/dock")
     public String dock(String signature, String timestamp, String nonce, String echostr) {
         log.debug("signature:{}, timestamp:{}, nonce:{}, echostr:{}", signature, timestamp, nonce, echostr);
         boolean isOk = checkSignature(weChatConfig.getToken(), signature, timestamp, nonce);
@@ -43,7 +48,7 @@ public class WeChatController {
         return echostr;
     }
 
-    @PostMapping
+    @PostMapping("/dock")
     public String message(HttpServletRequest request) throws IOException, DocumentException {
         Map<String, String> mapRequest = MessageUtil.xmlToMap(request);
         String strToUserName = mapRequest.get("ToUserName");
@@ -57,7 +62,7 @@ public class WeChatController {
         if (MsgType.TEXT.equals(strMsgType)) {
             if ("1".equals(strContent)) {
                 msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "世界最帅");
-            }else{
+            } else {
                 msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "我不是siri，无法识您发的消息:" + strContent);
             }
         } else if (MsgType.EVENT.equals(strMsgType)) {
@@ -73,5 +78,15 @@ public class WeChatController {
         String xml = MessageUtil.textMessageToXml(msg);
         log.info("msg to xml:{}", xml);
         return xml;
+    }
+
+    @GetMapping("/accesstoken/refresh")
+    public void refreshAccessToken() {
+        weChatService.refreshAccessToken(true);
+    }
+
+    @GetMapping("/menu")
+    public MenuResponse createMenu() throws Exception {
+        return weChatService.createMenu();
     }
 }
