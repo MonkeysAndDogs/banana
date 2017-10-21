@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @EnableScheduling
 public class TreeApplication implements CommandLineRunner {
 
-    private AtomicInteger count;
+    private AtomicInteger count = new AtomicInteger();
 
     @Resource
     private WeChatService weChatService;

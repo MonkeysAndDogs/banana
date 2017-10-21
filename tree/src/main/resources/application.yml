@@ -5,6 +5,7 @@ wechat:
   token: banana
   appID: wxa052d84a54308b00
   appSecret: ecccf02f1a57b41c8a7c99b4cab64a43
+  domain: ca528950.ngrok.io
 
 spring:
   jackson:

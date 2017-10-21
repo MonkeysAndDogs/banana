@@ -6,6 +6,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import zoo.monkeys.banana.tree.wechat.message.Message;
+import zoo.monkeys.banana.tree.wechat.message.cmm.NewsItem;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,7 @@ public class MessageUtil {
         }
         XStream xStream = new XStream();
         xStream.alias("xml", msg.getClass());
+        xStream.alias("item", new NewsItem().getClass());
         return xStream.toXML(msg);
     }
 }

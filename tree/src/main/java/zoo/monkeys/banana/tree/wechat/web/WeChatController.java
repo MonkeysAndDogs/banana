@@ -10,6 +10,8 @@ import zoo.monkeys.banana.tree.config.WeChatConfig;
 import zoo.monkeys.banana.tree.utils.MessageUtil;
 import zoo.monkeys.banana.tree.wechat.message.Message;
 import zoo.monkeys.banana.tree.wechat.message.MessageFactory;
+import zoo.monkeys.banana.tree.wechat.message.cmm.NewsItem;
+import zoo.monkeys.banana.tree.wechat.message.cmm.NewsMessage;
 import zoo.monkeys.banana.tree.wechat.message.constants.MsgType;
 import zoo.monkeys.banana.tree.wechat.model.MenuResponse;
 import zoo.monkeys.banana.tree.wechat.service.WeChatService;
@@ -62,8 +64,27 @@ public class WeChatController {
         if (MsgType.TEXT.equals(strMsgType)) {
             if ("1".equals(strContent)) {
                 msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "世界最帅");
+            } else if ("2".equals(strContent)) {
+                NewsMessage news = MessageFactory.createNewsMessage(strFromUserName, strToUserName);
+
+                NewsItem item = new NewsItem();
+                item.setTitle("世界最帅");
+                item.setDescription("世界，亦稱天地、天下、人间、世间、万物、世上等，是對所有事物的代稱。可以有下列意思：. 人類文明所有一切的代稱。在許多場合下，也以'全球、環球（寰球）、寰宇'");
+                item.setPicUrl("http://" + weChatConfig.getDomain() + "/image/world.jpeg");
+                item.setUrl("http://" + weChatConfig.getDomain());
+                news.getArticles().add(item);
+
+                NewsItem item2 = new NewsItem();
+                item2.setTitle("iphonex");
+                item2.setDescription("世界，亦稱天地、天下、人间、世间、万物、世上等，是對所有事物的代稱。可以有下列意思：. 人類文明所有一切的代稱。在許多場合下，也以'全球、環球（寰球）、寰宇'");
+                item2.setPicUrl("http://" + weChatConfig.getDomain() + "/image/iphonex.png");
+                item2.setUrl("http://" + weChatConfig.getDomain());
+
+                news.getArticles().add(item2);
+                news.setArticleCount(news.getArticles().size());
+                msg = news;
             } else {
-                msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "我不是siri，无法识您发的消息:" + strContent);
+                msg = MessageFactory.createTextMessage(strFromUserName, strToUserName, "您发的消息是:" + strContent);
             }
         } else if (MsgType.EVENT.equals(strMsgType)) {
             String strEvent = mapRequest.get("Event");

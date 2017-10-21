@@ -1,5 +1,6 @@
 package zoo.monkeys.banana.tree.wechat.message;
 
+import zoo.monkeys.banana.tree.wechat.message.cmm.NewsMessage;
 import zoo.monkeys.banana.tree.wechat.message.cmm.TextMessage;
 import zoo.monkeys.banana.tree.wechat.message.constants.MsgType;
 
@@ -15,6 +16,14 @@ public class MessageFactory {
         textMessage.setFromUserName(fromUserName);
         textMessage.setContent(content);
         return textMessage;
+    }
+
+
+    public static NewsMessage createNewsMessage(String toUserName, String fromUserName) {
+        NewsMessage msg = new NewsMessage(MsgType.NEWS);
+        msg.setToUserName(toUserName);
+        msg.setFromUserName(fromUserName);
+        return msg;
     }
 
     public static String getMenuText() {

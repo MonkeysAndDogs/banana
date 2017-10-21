@@ -25,4 +25,6 @@ public class WeChatConfig {
     private String appSecret;
 
     private String accessToken;
+
+    private String domain;
 }

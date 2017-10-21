@@ -6,6 +6,7 @@ package zoo.monkeys.banana.tree.wechat.message.constants;
  */
 public class MsgType {
     public static final String TEXT = "text";
+    public static final String NEWS = "news";
     public static final String IMAGE = "image";
     public static final String VOICE = "voice";
     public static final String VIDEO = "video";
