@@ -17,8 +17,11 @@ public class WeChatTask {
     @Resource
     private WeChatService weChatService;
 
+
     @Scheduled(fixedRate = 7200 * 1000)
     public void refreshAccessToken() {
-        weChatService.refreshAccessToken(false);
+        if(false){
+            weChatService.refreshAccessToken(false);
+        }
     }
 }

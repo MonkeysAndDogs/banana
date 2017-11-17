@@ -32,6 +32,8 @@ public class TreeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        weChatService.refreshAccessToken(false);
+        if(false){
+            weChatService.refreshAccessToken(false);
+        }
     }
 }

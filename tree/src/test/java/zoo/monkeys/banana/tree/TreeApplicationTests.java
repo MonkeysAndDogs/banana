@@ -5,16 +5,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import zoo.monkeys.banana.tree.user.dao.UserRepository;
+import zoo.monkeys.banana.tree.user.model.User;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import javax.annotation.Resource;
+import java.util.Date;
+
+
 @Slf4j
-public class TreeApplicationTests {
-
-
-    @Test
-    public void contextLoads() {
-
-    }
+public class TreeApplicationTests extends BaseTest{
 
 }
